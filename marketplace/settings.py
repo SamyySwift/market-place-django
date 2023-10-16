@@ -82,12 +82,17 @@ WSGI_APPLICATION = "marketplace.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "market_place_db_lksw",
+        "USER": "market_place_db_lksw_user",
+        "PASSWORD": "nVvBzpSqnG7tCH2snSx0E4klyxPfMFhc",
+        "HOST": "dpg-ckmgugou1l6c738pibvg-a.oregon-postgres.render.com",
+        "PORT": "5432",
     }
 }
-db_url = os.getenv("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(db_url)
+
+# db_url = os.getenv("DATABASE_URL")
+# DATABASES["default"] = dj_database_url.parse(db_url)
 
 
 # Password validation
@@ -128,9 +133,13 @@ STATIC_URL = "static/"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+
 STATICFILES_DIRS = [
     "core/static",
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

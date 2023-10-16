@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%iu!%+3fxem+8@md@jr@3!l+ralv0(z*u+3#sxls(u0j!w@fo="
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -84,10 +86,9 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+db_url = os.getenv("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(db_url)
 
-DATABASES["default"] = dj_database_url.parse(
-    "postgres://market_place_db_lksw_user:nVvBzpSqnG7tCH2snSx0E4klyxPfMFhc@dpg-ckmgugou1l6c738pibvg-a.oregon-postgres.render.com/market_place_db_lksw"
-)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

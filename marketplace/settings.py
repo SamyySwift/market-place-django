@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv("DEBUG", "False")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -83,13 +86,14 @@ WSGI_APPLICATION = "marketplace.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "market_place_db_lksw",
-        "USER": "market_place_db_lksw_user",
-        "PASSWORD": "nVvBzpSqnG7tCH2snSx0E4klyxPfMFhc",
-        "HOST": "dpg-ckmgugou1l6c738pibvg-a.oregon-postgres.render.com",
-        "PORT": "5432",
+        "NAME": os.getenv("NAME"),
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": os.getenv("HOST"),
+        "PORT": os.getenv("PORT"),
     }
 }
+
 
 # db_url = os.getenv("DATABASE_URL")
 # DATABASES["default"] = dj_database_url.parse(db_url)

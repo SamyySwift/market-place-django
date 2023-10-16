@@ -2,6 +2,14 @@
 
 This document provides information about the views, their functionalities, and URLs for the core and related applications in the project.
 
+## Environment Setup
+
+- Clone the repo
+- Run `pipenv install` to install all required packages
+- Don't forget to set the database to connect to your own database
+- Run `python manage.py migrate` to migrate the tables to a new database
+- `Run python manage.py runserver` to start the server
+
 ## Core Views
 
 ### Index View
